@@ -18,14 +18,14 @@
             transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Animația Bloom (Badge) */
+        
         @keyframes bloom {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(228, 80, 117, 0); }
             50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(228, 80, 117, 0.3); background-color: #fff1f2; }
         }
         .animate-bloom { animation: bloom 4s ease-in-out infinite; }
 
-        /* Animația Fade-In-Up (Titlu și Descriere) */
+        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -35,13 +35,13 @@
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
 
-        /* Plutire carduri - am adăugat .product-card:hover pentru claritate */
+        
         .product-card { 
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; 
         }
 
         .product-card:hover { 
-            transform: translateY(-12px) !important; /* !important asigură că hover-ul câștigă mereu */
+            transform: translateY(-12px) !important; 
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
 
@@ -243,14 +243,14 @@
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
 
-    // Trimitem valoarea către CSS
+
     document.documentElement.style.setProperty('--scroll-percent', scrolled + '%');
     
-    // Schimbăm culoarea de fundal a body-ului când trecem de prima parte
+
     if (scrolled > 10) {
-        document.body.style.backgroundColor = "#fff1f2"; // Roz pal
+        document.body.style.backgroundColor = "#fff1f2"; 
     } else {
-        document.body.style.backgroundColor = "#ffffff"; // Alb sus
+        document.body.style.backgroundColor = "#ffffff"; 
     }
 });
 </script>
