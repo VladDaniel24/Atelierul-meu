@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelierul Meu | Mărțișoare Artizanale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --scroll-percent: 0%; }
+
+        body {
+            background-color: #fff;
+            background-image: 
+                radial-gradient(at 50% calc(var(--scroll-percent) - 10%), rgb(255, 255, 255) 0px, transparent 80%),
+                radial-gradient(at 50% calc(var(--scroll-percent) + 20%), rgb(234, 128, 156) 0px, transparent 80%);
+            background-attachment: fixed;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Animația Bloom (Badge) */
+        @keyframes bloom {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(228, 80, 117, 0); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(228, 80, 117, 0.3); background-color: #fff1f2; }
+        }
+        .animate-bloom { animation: bloom 4s ease-in-out infinite; }
+
+        /* Animația Fade-In-Up (Titlu și Descriere) */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { opacity: 0; animation: fadeInUp 1s ease-out forwards; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Plutire carduri - am adăugat .product-card:hover pentru claritate */
+        .product-card { 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; 
+        }
+
+        .product-card:hover { 
+            transform: translateY(-12px) !important; /* !important asigură că hover-ul câștigă mereu */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-gray-800 font-sans selection:bg-rose-100">
+<header class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-rose-100">
+    <nav class="container mx-auto px-2 sm:px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-1 sm:gap-2 group shrink">
+            <span class="font-serif text-base sm:text-xl md:text-2xl font-black text-slate-800 tracking-tighter sm:tracking-tight">
+                Atelierul <span class="text-rose-600 italic">Meu</span>
+            </span>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-8 text-[10px] sm:text-xs md:text-sm uppercase tracking-widest font-bold text-gray-500 shrink-0">
+            <a href="#produse" class="hover:text-rose-600 transition relative group whitespace-nowrap">
+                Produse
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-600 transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#despre" class="hover:text-rose-600 transition relative group whitespace-nowrap">
+                Despre noi
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-600 transition-all group-hover:w-full"></span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+        <section class="relative bg-transparent py-20 lg:py-32 overflow-hidden min-h-[60vh] flex items-center">
+            <div class="container mx-auto px-6 flex flex-col items-center relative z-10 text-center">
+                
+                <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest mb-6 border border-rose-100 shadow-sm animate-bloom reveal">
+                    <span class="text-sm">🌸</span> Primăvara 2026 <span class="text-sm">🌸</span>
+                </div>
+                
+                <h2 class="text-5xl md:text-7xl font-serif font-black text-slate-900 mb-6 leading-tight reveal delay-1">
+                    Povestea primăverii, <br> 
+                    <span class="text-rose-600 italic">gravată cu drag</span>
+                </h2>
+                <p class="text-lg md:text-xl text-slate-700 font-medium leading-relaxed px-4 max-w-3xl backdrop-blur-[2px] bg-white/10 rounded-xl reveal delay-2">
+                    Mărțișoare artizanale create prin tehnologie laser și finisate cu grijă manuală, 
+                    îmbinând precizia modernă cu spiritul autentic românesc.
+                </p>
+                
+                <div class="mt-10 reveal delay-3">
+                    <a href="#produse" class="inline-block bg-slate-900 text-white px-10 py-4 rounded-full font-bold hover:bg-rose-600 transition-all shadow-xl hover:shadow-rose-100 active:scale-95">
+                        Descoperă Colecția
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <main id="produse" class="container mx-auto px-4 sm:px-6 py-16">
+            <h3 class="text-3xl font-serif font-bold mb-12 border-b-2 border-rose-600 pb-4 inline-block">Colecția Noastră</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Carticica1.png" alt="Mărțișor cărticică" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">15 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">File de Poveste</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                O mini-carte gravată, gata să deschidă un nou capitol plin de soare.
+                            </p>
+                            <a href="Carte.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Fluture1.png" alt="Mărțișor fluture" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">15 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Aripi de Lumină</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Un strop de libertate tăiat în detalii fine. Fluturele artizanal simbolizează renașterea naturii și delicatețea primelor zile de martie</p>
+                            <a href="Fluture.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Plic1.png" alt="Mărțișor plic" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">10 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Poștașul primăverii</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Poștașul primăverii aduce vești bune! Un design inedit sub formă de plic, creat pentru a purta gânduri calde și zâmbete celor dragi</p>
+                            <a href="Plic.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <div class="scroll-reveal"> 
+                <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Cosar.png" alt="Cutie personalizată" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">10 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Vestitorul Norocului</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Cel mai îndrăgit simbol al norocului revine într-o formă artizanală. Un mic coșar sculptat cu drag, gata să poarte gândurile tale bune.</p>
+                            <a href="Cosar.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Traditional1.png" alt="Mărțișor potcoavă" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">10 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Dor de Tradiție</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">O ie miniaturală ce poartă cu mândrie motivele străbune. Un omagiu adus eleganței românești, tăiat cu finețe în lemn natural.</p>
+                            <a href="Traditional.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Potcoava1.png" alt="Mărțișor potcoavă" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">5 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Talismanul Casei</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Făurită pentru a aduce noroc și protecție. Îmbinăm precizia laserului cu simbolul autentic al norocului, într-un mărțișor care nu se demodează niciodată.</p>
+                            <a href="Potcoava.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="scroll-reveal"> <div class="product-card relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-rose-50 flex flex-col h-full">
+                        <img src="Imagini/Buburuza1.png" alt="Mărțișor trifoi" class="w-full h-52 object-cover">
+                        <span class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-rose-600 shadow-sm">5 RON</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-xl mb-2 text-slate-800">Trifoiul Speranței</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Simbolul norocului pur, finisat manual până la cel mai mic detaliu. Patru foițe delicate care să însoțească persoana dragă pe tot parcursul anului.</p>
+                            <a href="Trifoi.html" class="group mt-auto flex items-center justify-center gap-2 w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold transition-all hover:bg-rose-600 hover:shadow-lg active:scale-95">
+                                <span>Detalii</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </main>
+
+<section id="despre" class="bg-white/50 py-20 backdrop-blur-sm border-t border-rose-100">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h3 class="text-3xl font-serif font-bold mb-6 text-slate-900 italic">Povestea noastră</h3>
+            <p class="text-lg text-slate-700 leading-relaxed font-medium">
+                Suntem o mică echipă dedicată calității. <span class="text-rose-600 font-bold">"Atelierul Meu"</span> a început din dorința de a oferi produse autentice, lucrate manual, care să aducă bucurie și să păstreze tradiția vie în casele oamenilor.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300 py-12 text-center border-t-8 border-rose-600">
+        <div class="container mx-auto px-6">
+            <h4 class="font-serif text-2xl font-bold text-white mb-2 uppercase tracking-tighter">Atelierul Meu</h4>
+            <p class="text-sm opacity-60 mb-6 italic">Din drag de tradiție.</p>
+            <p class="text-xs">&copy; 2026 Atelierul Meu. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+<script>
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => {
+    const winScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+
+    // Trimitem valoarea către CSS
+    document.documentElement.style.setProperty('--scroll-percent', scrolled + '%');
+    
+    // Schimbăm culoarea de fundal a body-ului când trecem de prima parte
+    if (scrolled > 10) {
+        document.body.style.backgroundColor = "#fff1f2"; // Roz pal
+    } else {
+        document.body.style.backgroundColor = "#ffffff"; // Alb sus
+    }
+});
+</script>
+</body>
+</html>
